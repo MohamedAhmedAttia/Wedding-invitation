@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    background: #f1ede7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* الحاوية */
+.card-wrapper {
+    position: relative;
+    width: 420px;
+    height: 600px;
+    perspective: 2000px; /* مهم للـ 3D flip */
+}
+
+/* الدعوة الأصلية تحت */
+.card-back {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    transform: rotate(3deg); /* نفس زاوية الغلاف */
+    object-fit: cover;
+}
+
+/* الغلاف (اللي هيتفتح فوق) */
+.card-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: left;
+    transform: rotate(3deg) rotateY(0deg);
+    transition: transform 0.8s ease-in-out;
+}
+.card-cover.open {
+    transform: rotate(3deg) rotateY(-120deg);
+}
+/* صورة الغلاف */
+.cover-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* عنوان الدعوة في النص */
+.title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 38px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 0 0 5px #fff;
+    pointer-events: none;
+    font-family: "Playwrite NO", cursive;
+}
+
+/* عند الوقوف — الكارت يتفتح */
+
+.card-cover .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 38px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 0 0 5px #fff;
+    pointer-events: none;
+    transition: opacity 0.8s ease-in-out 1s; /* الاختفاء بعد ثانية */
+}
+.card-cover.open .title {
+    opacity: 0;
+}
